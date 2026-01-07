@@ -15,14 +15,14 @@
 git clone https://gitlab.com/anhlta/odoo-fitdnu.git
 git checkout 
 
-## 1.2. cài đặt các thư viện cần thiết
+## 1.2. Cài đặt các thư viện cần thiết
 
 Người sử dụng thực thi các lệnh sau đề cài đặt các thư viện cần thiết
 
 ```
 sudo apt-get install libxml2-dev libxslt-dev libldap2-dev libsasl2-dev libssl-dev python3.10-distutils python3.10-dev build-essential libssl-dev libffi-dev zlib1g-dev python3.10-venv libpq-dev
 ```
-## 1.3. khởi tạo môi trường ảo.
+## 1.3. Khởi tạo môi trường ảo
 
 `python3.10 -m venv ./venv`
 Thay đổi trình thông dịch sang môi trường ảo và chạy requirements.txt để cài đặt tiếp các thư viện được yêu cầu
