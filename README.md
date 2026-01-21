@@ -86,11 +86,15 @@ Thay vì sử dụng các tệp Excel rời rạc hay hệ thống thủ công, 
 - 📊 Báo cáo số ngày nghỉ, ngày còn lại
 - ⏰ Hỗ trợ tính lương tự động khi có nghỉ phép
 
+<<<<<<< HEAD
 ### 📊 Báo Cáo & Phân Tích
 - 📈 Báo cáo chi tiết về nhân sự, chấm công, lương
 - 📉 Phân tích xu hướng, thống kê, dự báo
 - 🎯 Bảng điều khiển (Dashboard) tổng hợp thông tin chính
 - 📄 Xuất báo cáo sang Excel, PDF
+=======
+## 1.2. Cài đặt các thư viện cần thiết
+>>>>>>> dd393334d59101d8ec87880736a1df9087bda5b2
 
 ## 📸 3.1. Giao diện chính của hệ thống
 
@@ -120,6 +124,15 @@ Thay vì sử dụng các tệp Excel rời rạc hay hệ thống thủ công, 
 git clone https://github.com/your-repo/odoo-fitdnu.git
 cd odoo-fitdnu
 ```
+<<<<<<< HEAD
+=======
+sudo apt-get install libxml2-dev libxslt-dev libldap2-dev libsasl2-dev libssl-dev python3.10-distutils python3.10-dev build-essential libssl-dev libffi-dev zlib1g-dev python3.10-venv libpq-dev
+```
+## 1.3. Khởi tạo môi trường ảo
+
+`python3.10 -m venv ./venv`
+Thay đổi trình thông dịch sang môi trường ảo và chạy requirements.txt để cài đặt tiếp các thư viện được yêu cầu
+>>>>>>> dd393334d59101d8ec87880736a1df9087bda5b2
 
 **Bước 2**: Tạo file environment
 ```bash
