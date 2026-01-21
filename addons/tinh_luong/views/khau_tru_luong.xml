@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Khấu trừ lương - Tree View -->
+        <record id="view_khau_tru_luong_tree" model="ir.ui.view">
+            <field name="name">Khấu trừ lương - Tree</field>
+            <field name="model">khau_tru_luong</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="thu_tu"/>
+                    <field name="ten_khau_tru"/>
+                    <field name="loai"/>
+                    <field name="kiểu_tinh"/>
+                    <field name="gia_tri"/>
+                    <field name="active" widget="boolean"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Khấu trừ lương - Form View -->
+        <record id="view_khau_tru_luong_form" model="ir.ui.view">
+            <field name="name">Khấu trừ lương - Form</field>
+            <field name="model">khau_tru_luong</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="ten_khau_tru" placeholder="Tên khấu trừ"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="loai"/>
+                                <field name="kiểu_tinh"/>
+                                <field name="gia_tri"/>
+                            </group>
+                            <group>
+                                <field name="thu_tu"/>
+                                <field name="active" widget="boolean"/>
+                            </group>
+                        </group>
+
+                        <separator string="Điều kiện áp dụng"/>
+                        <field name="du_dieu_kien" nolabel="1" placeholder="VD: so_cong >= 20"/>
+
+                        <separator string="Ghi chú"/>
+                        <field name="ghi_chu" nolabel="1"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Khấu trừ lương - Search -->
+        <record id="view_khau_tru_luong_search" model="ir.ui.view">
+            <field name="name">Khấu trừ lương - Search</field>
+            <field name="model">khau_tru_luong</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ten_khau_tru"/>
+                    <field name="loai"/>
+                    <separator/>
+                    <filter name="filter_active" string="Có hiệu lực" domain="[('active', '=', True)]"/>
+                    <filter name="filter_bhxh" string="BHXH" domain="[('loai', '=', 'bhxh')]"/>
+                    <filter name="filter_bhyt" string="BHYT" domain="[('loai', '=', 'bhyt')]"/>
+                    <filter name="filter_bhtn" string="BHTN" domain="[('loai', '=', 'bhtn')]"/>
+                    <filter name="filter_tax" string="Thuế TNCN" domain="[('loai', '=', 'thue_tncn')]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Khấu trừ lương - Action -->
+        <record id="action_khau_tru_luong" model="ir.actions.act_window">
+            <field name="name">Khấu trừ lương</field>
+            <field name="res_model">khau_tru_luong</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

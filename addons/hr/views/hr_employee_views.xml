@@ -180,6 +180,11 @@
                                         <field name="study_field"/>
                                         <field name="study_school"/>
                                     </group>
+                                    <group string="Thông tin bổ sung">
+                                        <field name="so_bhxh"/>
+                                        <field name="dia_chi"/>
+                                        <field name="luong"/>
+                                    </group>
                                 </group>
                             </page>
                             <page name="hr_settings" string="HR Settings" groups="hr.group_hr_user">

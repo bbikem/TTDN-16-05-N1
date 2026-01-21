@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_payroll_template">
+    <t t-call="web.external_layout">
+      <t t-set="doc" t-value="doc"/>
+      <div class="page">
+        <h2>Bảng lương <t t-esc="doc.thang"/>/<t t-esc="doc.nam"/></h2>
+        <p>Trạng thái: <t t-esc="doc.state"/></p>
+
+        <table class="table table-sm o_main_table">
+          <thead>
+            <tr>
+              <th>Nhân viên</th>
+              <th>Số công</th>
+              <th>OT (giờ)</th>
+              <th>GROSS</th>
+              <th>NET</th>
+              <th>AI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <t t-foreach="doc.line_ids" t-as="l">
+              <tr>
+                <td><t t-esc="l.nhan_vien_id.ho_ten"/></td>
+                <td><t t-esc="l.so_cong"/></td>
+                <td><t t-esc="l.ot_gio"/></td>
+                <td><t t-esc="l.gross"/></td>
+                <td><t t-esc="l.net"/></td>
+                <td><t t-esc="l.ai_flag"/> - <t t-esc="l.ai_note"/></td>
+              </tr>
+            </t>
+          </tbody>
+        </table>
+
+        <p><b>Tổng GROSS:</b> <t t-esc="doc.tong_gross"/></p>
+        <p><b>Tổng NET:</b> <t t-esc="doc.tong_net"/></p>
+      </div>
+    </t>
+  </template>
+</odoo>
