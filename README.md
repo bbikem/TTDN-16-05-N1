@@ -14,11 +14,10 @@
         <img src="images/dnu_logo.png" alt="DaiNam University Logo" width="200"/>
     </p>
 
-[![Odoo](https://img.shields.io/badge/Odoo%2017-6C3696?style=for-the-badge&logo=odoo&logoColor=white)](https://www.odoo.com/)
-[![Python](https://img.shields.io/badge/Python%203.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Groq AI](https://img.shields.io/badge/Groq%20API-00D084?style=for-the-badge)](https://groq.com/)
-[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+
+[![AIoTLab](https://img.shields.io/badge/AIoTLab-green?style=for-the-badge)](https://www.facebook.com/DNUAIoTLab)
+[![Faculty of Information Technology](https://img.shields.io/badge/Faculty%20of%20Information%20Technology-blue?style=for-the-badge)](https://dainam.edu.vn/vi/khoa-cong-nghe-thong-tin)
+[![DaiNam University](https://img.shields.io/badge/DaiNam%20University-orange?style=for-the-badge)](https://dainam.edu.vn)
 
 </div>
  
@@ -262,6 +261,7 @@ Cấu hình:
 
 ## 🎨 6. Các Tính Năng Nổi Bật
 
+<<<<<<< HEAD
 ### ⚡ Tự Động Hóa Thông Minh
 ```
 Chấm Công → Tính Lương
@@ -357,3 +357,6 @@ Xem thêm: [CONTRIBUTING.md](CONTRIBUTING.md)
 Made with ❤️ by FITDNU
 
 </div>
+=======
+    
+>>>>>>> f4b7d4a1d2d793d6a7e4d515ecf3f0427f62e8e0
