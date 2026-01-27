@@ -261,7 +261,6 @@ Cấu hình:
 
 ## 🎨 6. Các Tính Năng Nổi Bật
 
-<<<<<<< HEAD
 ### ⚡ Tự Động Hóa Thông Minh
 ```
 Chấm Công → Tính Lương
@@ -323,10 +322,9 @@ Chatbot: "Phụ cấp quản lý: 500 ngàn/tháng
 
 ## 📞 8. Support & Liên Hệ
 
-- 📧 Email: [your-email@example.com]
+- 📧 Email: [bbikemcutie@gmail.com]
 - 🌐 Website: [https://dainam.edu.vn]
 - 💬 Issues: GitHub Issues
-- 📚 Documentation: [https://docs-link]
 
 ## 📄 9. License & Attribution
 
@@ -354,6 +352,6 @@ Xem thêm: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ⭐ Nếu bạn thích project này, hãy star nó! ⭐
 
-Made with ❤️ by FITDNU
+Made with ❤️ by DuynTran, MaiHuong, HuyenTrang
 
 </div>
