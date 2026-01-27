@@ -1,7 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_bang_luong,access_bang_luong,model_bang_luong,,1,1,1,1
-access_bang_luong_line,access_bang_luong_line,model_bang_luong_line,,1,1,1,1
-access_ai_rule,access_ai_rule,model_ai_rule,,1,1,1,1
-access_khau_tru_luong,access_khau_tru_luong,model_khau_tru_luong,,1,1,1,1
-access_thanh_toan_luong,access_thanh_toan_luong,model_thanh_toan_luong,,1,1,1,1
-access_thanh_toan_luong_line,access_thanh_toan_luong_line,model_thanh_toan_luong_line,,1,1,1,1
+access_bang_luong_user,Bang luong user,model_tinh_luong_bang_luong,base.group_user,1,1,1,1
+access_tro_cap_user,Tro cap user,model_tinh_luong_tro_cap,base.group_user,1,1,1,0
+access_ngay_tra_luong_user,Ngay tra luong user,model_tinh_luong_ngay_tra_luong,base.group_user,1,1,1,1

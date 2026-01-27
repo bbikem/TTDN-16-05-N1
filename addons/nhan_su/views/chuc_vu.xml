@@ -1,89 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
+    <data>
+        <record id="view_chuc_vu_form" model="ir.ui.view">
+            <field name="name">chuc_vu</field>
+            <field name="model">chuc_vu</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px">Chức vụ</div>
+                        <group col="4" string="Thông tin chung">
+                            <field name="ten_chuc_vu"/>
+                            <field name="ma_chuc_vu_preview" string="Mã chức vụ" style="background-color: #f0f0f0;"/>
+                            <field name="ma_chuc_vu" invisible="1"/>
+                        </group>
+                        <group col="4" string="Thiết lập lương">
+                            <field name="luong_co_ban"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-    <!-- TREE -->
-    <record id="view_chuc_vu_tree" model="ir.ui.view">
-      <field name="name">chuc_vu.tree</field>
-      <field name="model">chuc_vu</field>
-      <field name="arch" type="xml">
-        <tree string="Danh sách chức vụ">
-          <field name="ma_chuc_vu" string="Mã chức vụ"/>
-          <field name="ten_chuc_vu" string="Tên chức vụ"/>
-          <field name="he_so" string="Hệ số"/>
-          <field name="mo_ta" string="Mô tả"/>
-        </tree>
-      </field>
-    </record>
+        <record id="view_chuc_vu_tree" model="ir.ui.view">
+            <field name="name">chuc_vu</field>
+            <field name="model">chuc_vu</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ma_chuc_vu"/>
+                    <field name="ten_chuc_vu"/>
+                    <field name="luong_co_ban"/>
+                </tree>
+            </field>
+        </record>
 
-    <!-- SEARCH -->
-    <record id="view_chuc_vu_search" model="ir.ui.view">
-      <field name="name">chuc_vu.search</field>
-      <field name="model">chuc_vu</field>
-      <field name="arch" type="xml">
-        <search string="Tìm chức vụ">
-          <field name="ma_chuc_vu" string="Mã chức vụ"/>
-          <field name="ten_chuc_vu" string="Tên chức vụ"/>
-          <separator/>
-          <filter string="Hệ số > 1" name="hs_gt_1" domain="[('he_so','>',1)]"/>
-          <filter string="Hệ số = 1" name="hs_eq_1" domain="[('he_so','=',1)]"/>
-          <group expand="0" string="Nhóm theo">
-            <filter string="Hệ số" name="grp_he_so" context="{'group_by':'he_so'}"/>
-          </group>
-        </search>
-      </field>
-    </record>
+        <record model="ir.ui.view" id="chuc_vu_search">
+            <field name="model">chuc_vu</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_chuc_vu"/>
+                    <field name="ten_chuc_vu"/>
+                </search>
+            </field>
+        </record>
 
-    <!-- FORM -->
-    <record id="view_chuc_vu_form" model="ir.ui.view">
-      <field name="name">chuc_vu.form</field>
-      <field name="model">chuc_vu</field>
-      <field name="arch" type="xml">
-        <form string="Chức vụ">
-          <sheet>
-            <div class="oe_title">
-              <h1>
-                <field name="ten_chuc_vu" placeholder="Tên chức vụ" required="1"/>
-              </h1>
-              <div class="text-muted">
-                <span>Mã:</span>
-                <field name="ma_chuc_vu" class="oe_inline" required="1"/>
-              </div>
-            </div>
-
-            <group string="Thông tin">
-              <group>
-                <field name="he_so" string="Hệ số"/>
-              </group>
-              <group>
-                <field name="mo_ta" string="Mô tả" placeholder="Mô tả chức vụ..."/>
-              </group>
-            </group>
-          </sheet>
-
-          <!-- Chatter (pro) -->
-          <div class="oe_chatter">
-            <field name="message_follower_ids" widget="mail_followers"/>
-            <field name="activity_ids" widget="mail_activity"/>
-            <field name="message_ids" widget="mail_thread"/>
-          </div>
-
-        </form>
-      </field>
-    </record>
-
-    <!-- ACTION -->
-    <record id="action_chuc_vu" model="ir.actions.act_window">
-      <field name="name">Chức vụ</field>
-      <field name="res_model">chuc_vu</field>
-      <field name="view_mode">tree,form</field>
-      <field name="search_view_id" ref="view_chuc_vu_search"/>
-      <field name="help" type="html">
-        <p class="o_view_nocontent_smiling_face">
-          Tạo chức vụ đầu tiên
-        </p>
-      </field>
-    </record>
-
-  </data>
+        <record id="action_chuc_vu" model="ir.actions.act_window">
+            <field name="name">Chức vụ</field>
+            <field name="res_model">chuc_vu</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref = "chuc_vu_search"/>
+        </record>
+    </data>
 </odoo>
+        
+    

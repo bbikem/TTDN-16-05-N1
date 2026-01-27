@@ -1,45 +1,42 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Chấm Công (Attendance)",
+    'name': "cham_cong",
 
     'summary': """
-        Module quản lý chấm công, tính công, đơn từ xin phép/đi muộn/về sớm
-    """,
+        Short (1 phrase/line) summary of the module's purpose, used as
+        subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Tính năng:
-        - Quản lý ca làm theo ngày
-        - Bảng chấm công với tính toán tự động
-        - Xác định trạng thái: đi làm, đi muộn, về sớm, vắng mặt
-        - Quản lý đơn từ (xin phép, đi muộn, về sớm)
-        - Tính công tự động (công cơ bản, OT)
-        - Khóa bảng chấm công khi tính công
-        - Báo cáo thống kê chấm công
+        Long description of module's purpose
     """,
 
-    'author': "Fitdnu",
-    'website': "http://www.fitdnu.com",
+    'author': "My Company",
+    'website': "http://www.yourcompany.com",
 
-    'category': 'Human Resources',
-    'version': '15.0.1.0.0',
+    # Categories can be used to filter modules in modules listing
+    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
+    # for the full list
+    'category': 'Uncategorized',
+    'version': '0.1',
 
+    # any module necessary for this one to work correctly
     'depends': [
         'base',
-        'nhan_su',
-        'mail'
+        'nhan_su'
     ],
 
+    # always loaded
     'data': [
-        'data/sequence_data.xml',
         'security/ir.model.access.csv',
+        'data/dot_dang_ky_sequence.xml',
         'views/dang_ky_ca_lam_theo_ngay.xml',
         'views/bang_cham_cong.xml',
         'views/dot_dang_ky.xml',
         'views/don_tu.xml',
-        'views/tinh_cong.xml',
         'views/menu.xml',
     ],
-    
-    'installable': True,
-    'application': True,
+    # only loaded in demonstration mode
+    'demo': [
+        'demo/demo.xml',
+    ],
 }

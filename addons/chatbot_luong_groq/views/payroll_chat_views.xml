@@ -1,0 +1,31 @@
+<odoo>
+  <record id="view_payroll_chat_wizard_form" model="ir.ui.view">
+    <field name="name">chatbot_luong_groq.wizard.form</field>
+    <field name="model">chatbot_luong_groq.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Payroll Chatbot (Groq)">
+        <sheet>
+          <group>
+            <field name="user_text" placeholder="Hãy nhập câu hỏi của bạn..."/>
+          </group>
+          <footer>
+            <button name="action_chat" type="object" string="Trả lời" class="btn-primary"/>
+            <button string="Đóng" class="btn-secondary" special="cancel"/>
+          </footer>
+
+          <group>
+            <field name="answer" readonly="1"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_payroll_chat_wizard" model="ir.actions.act_window">
+    <field name="name">Payroll Chatbot</field>
+    <field name="res_model">chatbot_luong_groq.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+</odoo>

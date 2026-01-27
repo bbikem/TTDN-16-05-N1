@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    <menuitem
-      id="menu_tinh_luong_root"
-      name="Tính Lương"
-      sequence="0"/>
-    
-    <menuitem id="menu_tinh_luong"
-              name="Bảng lương"
-              parent="menu_tinh_luong_root"
-              action="tinh_luong.action_bang_luong"
-              sequence="10"/>
-
-    <menuitem id="menu_thanh_toan_luong"
-              name="Thanh toán lương"
-              parent="menu_tinh_luong_root"
-              action="tinh_luong.action_thanh_toan_luong"
-              sequence="20"/>
-
-    <menuitem id="menu_tinh_luong_config"
-              name="Cấu hình"
-              parent="menu_tinh_luong_root"
-              sequence="40"/>
-
-    <menuitem id="menu_ai_rule"
-              name="AI Rule"
-              parent="menu_tinh_luong_config"
-              action="tinh_luong.action_ai_rule_open_singleton"
-              sequence="10"/>
-
-    <menuitem id="menu_khau_tru_luong"
-              name="Khấu trừ lương"
-              parent="menu_tinh_luong_config"
-              action="tinh_luong.action_khau_tru_luong"
-              sequence="20"/>
-  </data>
+    <menuitem id="menu_tinh_luong_root" name="Tính lương" sequence="30"/>
+    <menuitem id="menu_chatbot_tinh_luong" name="Chatbot tính lương" parent="menu_tinh_luong_root" 
+              action="chatbot_luong_groq.action_payroll_chat_wizard" sequence="40"/>
 </odoo>

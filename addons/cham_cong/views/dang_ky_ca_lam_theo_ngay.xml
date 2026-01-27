@@ -9,7 +9,7 @@
                     <sheet>
                         <div class="oe_read_only" style="font-size:25px">Đăng ký ca làm theo ngày</div>
                         <group col="4" string="Thông tin chung">
-                            <field name="ma_dot_ngay"/>
+                            <field name="ma_dot_ngay" readonly="1"/>
                             <field name="dot_dang_ky_id"/>
                             <field name="nhan_vien_id"/>
                             <field name="ngay_lam"/>

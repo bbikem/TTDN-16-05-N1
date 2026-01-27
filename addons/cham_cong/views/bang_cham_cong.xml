@@ -7,20 +7,23 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_fill_gio_dung_gio" type="object" class="oe_highlight" string="Fill giờ đúng giờ"/>
+                            <button name="action_fill_gio_di_muon" type="object" class="oe_highlight" string="Fill giờ đi muộn 15p"/>
+                            <button name="action_fill_gio_ve_som" type="object" class="oe_highlight" string="Fill giờ về sớm 15p"/>
+                        </div>
                         <div class="oe_read_only" style="font-size:25px">Bảng chấm công</div>
                         <group col="4" string="Thông tin chung">
                             <field name="nhan_vien_id"/>
                             <field name="ngay_cham_cong"/>
                             <field name="ca_lam"/>
-                            <field name="gio_vao_ca"/>
-                            <field name="gio_ra_ca"/>
+                            <field name="gio_vao_ca" readonly="1"/>
+                            <field name="gio_ra_ca" readonly="1"/>
                             <field name="gio_vao"/>
                             <field name="gio_ra"/>
-                            <field name="phut_di_muon"/>
-                            <field name="phut_ve_som"/>
-                            <field name="trang_thai"/>
-                            <field name="loai_don"/>
-                            <field name="thoi_gian_xin"/>
+                            <field name="phut_di_muon" readonly="1"/>
+                            <field name="phut_ve_som" readonly="1"/>
+                            <field name="trang_thai" readonly="1"/>
                         </group>
                     </sheet>
                 </form>
@@ -42,8 +45,6 @@
                     <field name="phut_di_muon"/>
                     <field name="phut_ve_som"/>
                     <field name="trang_thai"/>
-                    <field name="loai_don"/>
-                    <field name="thoi_gian_xin"/>
                 </tree>
             </field>
         </record>
@@ -62,8 +63,6 @@
                     <field name="phut_di_muon"/>
                     <field name="phut_ve_som"/>
                     <field name="trang_thai"/>
-                    <field name="loai_don"/>
-                    <field name="thoi_gian_xin"/>
                 </search>
             </field>
         </record>

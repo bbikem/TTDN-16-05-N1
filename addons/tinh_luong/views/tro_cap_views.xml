@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tro_cap_tree" model="ir.ui.view">
+        <field name="name">tinh_luong.tro_cap.tree</field>
+        <field name="model">tinh_luong.tro_cap</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="loai"/>
+                <field name="so_tien"/>
+                <field name="bang_luong_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_tro_cap_form" model="ir.ui.view">
+        <field name="name">tinh_luong.tro_cap.form</field>
+        <field name="model">tinh_luong.tro_cap</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="bang_luong_id"/>
+                        <field name="name"/>
+                        <field name="loai"/>
+                        <field name="so_tien"/>
+                        <field name="ghi_chu"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tro_cap" model="ir.actions.act_window">
+        <field name="name">Trợ cấp</field>
+        <field name="res_model">tinh_luong.tro_cap</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_tro_cap"
+              name="Trợ cấp"
+              parent="menu_tinh_luong_root"
+              action="action_tro_cap"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ngay_tra_luong_tree" model="ir.ui.view">
+        <field name="name">tinh_luong.ngay_tra_luong.tree</field>
+        <field name="model">tinh_luong.ngay_tra_luong</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ten_dot_chi_tra"/>
+                <field name="dot_lam_viec_id"/>
+                <field name="ngay_tra"/>
+                <field name="sync_calendar_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ngay_tra_luong_form" model="ir.ui.view">
+        <field name="name">tinh_luong.ngay_tra_luong.form</field>
+        <field name="model">tinh_luong.ngay_tra_luong</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_sync_to_google_calendar" type="object" string="Đồng bộ Google Calendar" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-info" role="alert">
+                        <strong>Lưu ý:</strong> Khi bấm "Đồng bộ Google Calendar", sự kiện sẽ được tạo trên Google Calendar của bạn.
+                    </div>
+                    <group>
+                        <field name="ten_dot_chi_tra"/>
+                        <field name="dot_lam_viec_id"/>
+                        <field name="ngay_tra"/>
+                        <field name="sync_calendar_status" readonly="1"/>
+                        <field name="google_calendar_event_id" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ngay_tra_luong" model="ir.actions.act_window">
+        <field name="name">Ngày trả lương</field>
+        <field name="res_model">tinh_luong.ngay_tra_luong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_ngay_tra_luong"
+              name="Ngày trả lương"
+              parent="menu_tinh_luong_root"
+              action="action_ngay_tra_luong"
+              sequence="10"/>
+</odoo>

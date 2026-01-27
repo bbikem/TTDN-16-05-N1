@@ -9,16 +9,15 @@
                     <sheet>
                         <div class="oe_read_only" style="font-size:25px">Đợt đăng ký</div>
                         <group col="4" string="Thông tin chung">
-                            <field name="ma_dot"/>
-                            <field name="nam_dang_ky"/>
-                            <field name="ten_dot"/>
+                            <field name="ma_dot_preview" string="Mã đợt" style="background-color: #f0f0f0;"/>
                             <field name="thang_dang_ky"/>
+                            <field name="ten_dot"/>
                             <field name="ngay_bat_dau"/>
                             <field name="ngay_ket_thuc"/>
                             <field name="han_dang_ky"/>
-                            <field name="nhan_vien_ids" widget="many2many_checkboxes"/>
                             <field name="trang_thai_dang_ky"/>
                             <field name="trang_thai_ap_dung"/>
+                            <field name="ma_dot" invisible="1"/>
                         </group>
                     </sheet>
                 </form>
@@ -32,12 +31,10 @@
                 <tree>
                     <field name="ma_dot"/>
                     <field name="ten_dot"/>
-                    <field name="nam_dang_ky"/>
                     <field name="thang_dang_ky"/>
                     <field name="ngay_bat_dau"/>
                     <field name="ngay_ket_thuc"/>
                     <field name="han_dang_ky"/>
-                    <field name="nhan_vien_ids" widget="many2many_tags"/>
                     <field name="trang_thai_dang_ky"/>
                     <field name="trang_thai_ap_dung"/>
                 </tree>
@@ -50,12 +47,10 @@
                 <search>
                     <field name="ma_dot"/>
                     <field name="ten_dot"/>
-                    <field name="nam_dang_ky"/>
                     <field name="thang_dang_ky"/>
                     <field name="ngay_bat_dau"/>
                     <field name="ngay_ket_thuc"/>
                     <field name="han_dang_ky"/>
-                    <field name="nhan_vien_ids" widget="many2many_tags"/>
                     <field name="trang_thai_dang_ky"/>
                     <field name="trang_thai_ap_dung"/>
                 </search>

@@ -1,25 +1,23 @@
+# -*- coding: utf-8 -*-
 {
-    "name": "Tính Lương (Payroll)",
+    "name": "Tính lương",
     "version": "15.0.1.0.0",
-    "license": "LGPL-3",
     "category": "Human Resources",
+    "summary": "Tính lương dựa trên Nhân sự & Chấm công",
     "depends": [
+        "base",
         "nhan_su",
         "cham_cong",
-        "mail"  
+        "google_calendar",
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/ai_rule.xml",
-        "views/khau_tru_luong.xml",
-        "views/bang_luong.xml",
-        "views/thanh_toan_luong.xml",
+        "data/sequence.xml",
         "views/menu.xml",
+        "views/ngay_tra_luong_views.xml",
+        "views/tro_cap_views.xml",
+        "views/bang_luong_views.xml",
     ],
     "installable": True,
     "application": True,
-    "summary": """
-        Module tính lương tự động từ chấm công, quản lý khấu trừ,
-        bảo hiểm, thưởng và thanh toán lương
-    """,
 }

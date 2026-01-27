@@ -1,139 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
+    <data>
+        <record id="view_nhan_vien_form" model="ir.ui.view">
+            <field name="name">nhan_vien</field>
+            <field name="model">nhan_vien</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px">Nhân viên</div>
+                        <group col="4" string="Thông tin chung">
+                            <field name="ho_ten_dem"/>
+                            <field name="ten"/>
+                            <field name="ma_dinh_danh_preview" string="Mã định danh" style="background-color: #f0f0f0;"/>
+                            <field name="ho_va_ten"/>
+                            <field name="ngay_sinh"/>
+                            <field name="tuoi"/>
+                            <field name="gioi_tinh"/>
+                            <field name="que_quan"/>
+                            <field name="email"/>
+                            <field name="so_dien_thoai"/>
+                            <field name="phong_ban_id"/>
+                            <field name="chuc_vu_id"/>
+                            <field name="ma_dinh_danh" invisible="1"/>
+                            <field name="anh" widget="image" class="oe_avatar"/>
+                        </group>
 
-    <!-- TREE -->
-    <record id="view_nhan_vien_tree" model="ir.ui.view">
-      <field name="name">nhan_vien.tree</field>
-      <field name="model">nhan_vien</field>
-      <field name="arch" type="xml">
-        <tree string="Danh sách nhân viên">
-          <field name="ma_dinh_danh" string="Mã định danh"/>
-          <field name="ho_ten" string="Họ tên"/>
-          <field name="chuc_vu_id" string="Chức vụ"/>
-          <field name="phong_ban_ids" string="Phòng ban" widget="many2many_tags"/>
-          <field name="luong" string="Lương đơn giá"/>
-          <field name="email" string="Email"/>
-          <field name="so_dien_thoai" string="Số điện thoại"/>
-        </tree>
-      </field>
-    </record>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-    <!-- SEARCH -->
-    <record id="view_nhan_vien_search" model="ir.ui.view">
-      <field name="name">nhan_vien.search</field>
-      <field name="model">nhan_vien</field>
-      <field name="arch" type="xml">
-        <search string="Tìm nhân viên">
-          <field name="ma_dinh_danh" string="Mã định danh"/>
-          <field name="ho_ten" string="Họ tên"/>
-          <field name="email" string="Email"/>
-          <field name="so_dien_thoai" string="Số điện thoại"/>
-          <field name="chuc_vu_id" string="Chức vụ"/>
-          <field name="phong_ban_ids" string="Phòng ban"/>
+        <record id="view_nhan_vien_tree" model="ir.ui.view">
+            <field name="name">nhan_vien</field>
+            <field name="model">nhan_vien</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ho_ten_dem"/>
+                    <field name="ten"/>
+                    <field name="ma_dinh_danh"/>
+                    <field name="ho_va_ten"/>
+                    <field name="ngay_sinh"/>
+                    <field name="tuoi"/>
+                    <field name="gioi_tinh"/>
+                    <field name="que_quan"/>
+                    <field name="email"/>
+                    <field name="so_dien_thoai"/>
+                    <field name="phong_ban_id"/>
+                    <field name="chuc_vu_id"/>
+                </tree>
+            </field>
+        </record>
 
-          <separator/>
+        <record model="ir.ui.view" id="nhan_vien_search">
+            <field name="model">nhan_vien</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ho_ten_dem"/>
+                    <field name="ten"/>
+                    <field name="ma_dinh_danh"/>
+                    <field name="ho_va_ten"/>
+                    <field name="ngay_sinh"/>
+                    <field name="tuoi"/>
+                    <field name="gioi_tinh"/>
+                    <field name="que_quan"/>
+                    <field name="email"/>
+                    <field name="so_dien_thoai"/>
+                    <field name="phong_ban_id"/>
+                    <field name="chuc_vu_id"/>
+                    <field name="anh" widget="image" class="oe_avatar"/>
+                </search>
+            </field>
+        </record>
 
-          <filter string="Có email" name="has_email" domain="[('email','!=',False)]"/>
-          <filter string="Thiếu email" name="no_email" domain="[('email','=',False)]"/>
-
-          <separator/>
-
-          <group expand="0" string="Nhóm theo">
-            <filter string="Chức vụ" name="grp_chuc_vu" context="{'group_by':'chuc_vu_id'}"/>
-            <filter string="Phòng ban" name="grp_phong_ban" context="{'group_by':'phong_ban_ids'}"/>
-          </group>
-        </search>
-      </field>
-    </record>
-
-    <!-- FORM -->
-    <record id="view_nhan_vien_form" model="ir.ui.view">
-      <field name="name">nhan_vien.form</field>
-      <field name="model">nhan_vien</field>
-      <field name="arch" type="xml">
-        <form string="Nhân viên">
-          <sheet>
-
-            <div class="oe_title">
-              <h1>
-                <field name="ho_ten" placeholder="Họ và tên" required="1"/>
-              </h1>
-              <div class="text-muted">
-                <span>Mã định danh:</span>
-                <field name="ma_dinh_danh" class="oe_inline" required="1"/>
-              </div>
-            </div>
-
-            <notebook>
-
-              <!-- TAB 1: Thông tin cá nhân -->
-              <page string="Thông tin cá nhân">
-                <group>
-                  <group>
-                    <field name="ngay_sinh" string="Ngày sinh"/>
-                  </group>
-                  <group>
-                    <field name="email" string="Email"/>
-                    <field name="so_dien_thoai" string="Số điện thoại"/>
-                  </group>
-                </group>
-              </page>
-
-              <!-- TAB 2: Công việc -->
-              <page string="Công việc">
-                <group>
-                  <group>
-                    <field name="chuc_vu_id" string="Chức vụ"/>
-                  </group>
-                  <group>
-                    <field name="phong_ban_ids" string="Phòng ban" widget="many2many_tags"/>
-                  </group>
-                </group>
-              </page>
-
-              <!-- TAB 3: Lương & Bảo hiểm -->
-              <page string="Lương &amp; Bảo hiểm">
-                <group string="Thông tin lương">
-                  <field name="luong" string="Lương đơn giá" help="Đơn giá tính theo công/ngày"/>
-                </group>
-
-                <group string="Tỷ lệ bảo hiểm (Nhân viên)">
-                  <group>
-                    <field name="bhxh_ty_le" string="BHXH (%)"/>
-                    <field name="bhyt_ty_le" string="BHYT (%)"/>
-                    <field name="bhtn_ty_le" string="BHTN (%)"/>
-                  </group>
-                </group>
-              </page>
-
-            </notebook>
-
-          </sheet>
-
-          <!-- Chatter (pro) -->
-          <div class="oe_chatter">
-            <field name="message_follower_ids" widget="mail_followers"/>
-            <field name="activity_ids" widget="mail_activity"/>
-            <field name="message_ids" widget="mail_thread"/>
-          </div>
-
-        </form>
-      </field>
-    </record>
-
-    <!-- ACTION -->
-    <record id="action_nhan_vien" model="ir.actions.act_window">
-      <field name="name">Nhân viên</field>
-      <field name="res_model">nhan_vien</field>
-      <field name="view_mode">tree,form</field>
-      <field name="search_view_id" ref="view_nhan_vien_search"/>
-      <field name="help" type="html">
-        <p class="o_view_nocontent_smiling_face">
-          Tạo nhân viên đầu tiên
-        </p>
-      </field>
-    </record>
-
-  </data>
+        <record id="action_nhan_vien" model="ir.actions.act_window">
+            <field name="name">Nhân viên</field>
+            <field name="res_model">nhan_vien</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref = "nhan_vien_search"/>
+        </record>
+    </data>
 </odoo>
+        
+    

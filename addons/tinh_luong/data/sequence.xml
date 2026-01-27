@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_bang_luong" model="ir.sequence">
+        <field name="name">Bảng lương</field>
+        <field name="code">tinh_luong.bang_luong</field>
+        <field name="prefix">BL/</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

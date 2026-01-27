@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bang_luong_tree" model="ir.ui.view">
+        <field name="name">tinh_luong.bang_luong.tree</field>
+        <field name="model">tinh_luong.bang_luong</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nhan_vien_id"/>
+                <field name="dot_lam_viec_id"/>
+                <field name="so_ngay_di_lam"/>
+                <field name="so_gio_lam_viec"/>
+                <field name="so_ngay_di_muon"/>
+                <field name="tong_luong"/>
+                <field name="tong_tro_cap"/>
+                <field name="tien_phat_di_muon"/>
+                <field name="thuc_lanh"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_bang_luong_form" model="ir.ui.view">
+        <field name="name">tinh_luong.bang_luong.form</field>
+        <field name="model">tinh_luong.bang_luong</field>
+        <field name="arch" type="xml">
+            <form delete="1">
+                <header>
+                    <button name="action_confirm" type="object" string="Xác nhận" states="draft" class="btn-primary"/>
+                    <button name="action_paid" type="object" string="Đã trả" states="confirmed" class="btn-success"/>
+                    <button name="action_cancel" type="object" string="Hủy" states="draft,confirmed"/>
+                    <button name="action_reset_draft" type="object" string="Đưa về nháp" states="cancel,paid"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,paid,cancel"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="nhan_vien_id"/>
+                            <field name="dot_lam_viec_id"/>
+                            <field name="ngay_chot"/>
+                        </group>
+                        <group string="Số liệu chấm công">
+                            <field name="so_ngay_di_lam" readonly="1"/>
+                            <field name="so_gio_lam_viec" readonly="1"/>
+                            <field name="so_ngay_di_muon" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group string="Thiết lập tính lương">
+                        <field name="luong_co_ban" readonly="1"/>
+                        <field name="muc_phat_moi_ngay_di_muon" readonly="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Trợ cấp">
+                            <field name="tro_cap_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="loai"/>
+                                    <field name="so_tien"/>
+                                    <field name="ghi_chu"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Tổng kết">
+                            <group>
+                                <field name="luong_theo_ngay" readonly="1"/>
+                                <field name="tong_luong" readonly="1"/>
+                                <field name="tong_tro_cap" readonly="1"/>
+                                <field name="tien_phat_di_muon" readonly="1"/>
+                                <field name="thuc_lanh" readonly="1"/>
+                            </group>
+                            <field name="ghi_chu"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bang_luong" model="ir.actions.act_window">
+        <field name="name">Bảng lương</field>
+        <field name="res_model">tinh_luong.bang_luong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_bang_luong"
+              name="Bảng lương"
+              parent="menu_tinh_luong_root"
+              action="action_bang_luong"
+              sequence="30"/>
+</odoo>

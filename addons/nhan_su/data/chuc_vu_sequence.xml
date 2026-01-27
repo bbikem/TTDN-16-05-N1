@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_chuc_vu" model="ir.sequence">
+            <field name="name">Chức vụ Sequence</field>
+            <field name="code">chuc_vu.sequence</field>
+            <field name="prefix">CV</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>

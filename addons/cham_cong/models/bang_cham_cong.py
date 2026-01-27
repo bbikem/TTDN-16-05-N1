@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from datetime import datetime, time
+from datetime import datetime, time, timedelta
 from odoo.exceptions import ValidationError
 from pytz import timezone, UTC
 
@@ -25,13 +25,18 @@ class BangChamCong(models.Model):
     def _compute_Id_BCC(self):
         for record in self:
             if record.nhan_vien_id and record.ngay_cham_cong:
-                record.Id_BCC = f"{record.nhan_vien_id.ho_ten}_{record.ngay_cham_cong.strftime('%Y-%m-%d')}"
+                record.Id_BCC = f"{record.nhan_vien_id.ho_va_ten}_{record.ngay_cham_cong.strftime('%Y-%m-%d')}"
             else:
                 record.Id_BCC = ""
     
     # Đăng ký ca làm
     dang_ky_ca_lam_id = fields.Many2one('dang_ky_ca_lam_theo_ngay', string="Đăng ký ca làm")
-    ca_lam = fields.Selection(related='dang_ky_ca_lam_id.ca_lam', store=True, string="Ca làm")
+    ca_lam = fields.Selection([
+        ("", ""),
+        ("Sáng", "Sáng"),
+        ("Chiều", "Chiều"),
+        ("Cả ngày", "Cả Ngày"),
+    ], string="Ca làm", default="")
 
     @api.onchange('nhan_vien_id', 'ngay_cham_cong')
     def _onchange_dang_ky_ca_lam(self):
@@ -41,13 +46,19 @@ class BangChamCong(models.Model):
                     ('nhan_vien_id', '=', record.nhan_vien_id.id),
                     ('ngay_lam', '=', record.ngay_cham_cong)
                 ], limit=1)
-                record.dang_ky_ca_lam_id = dk_ca_lam.id if dk_ca_lam else False
+                if dk_ca_lam:
+                    record.dang_ky_ca_lam_id = dk_ca_lam.id
+                    record.ca_lam = dk_ca_lam.ca_lam
+                else:
+                    record.dang_ky_ca_lam_id = False
+                    record.ca_lam = ""
             else:
                 record.dang_ky_ca_lam_id = False
+                record.ca_lam = ""
 
     @api.model
     def create(self, vals):
-        # Xử lý dang_ky_ca_lam_id
+        # Xử lý dang_ky_ca_lam_id và ca_lam
         if vals.get('nhan_vien_id') and vals.get('ngay_cham_cong'):
             # Tìm đăng ký ca làm
             dk_ca_lam = self.env['dang_ky_ca_lam_theo_ngay'].search([
@@ -56,14 +67,15 @@ class BangChamCong(models.Model):
             ], limit=1)
             if dk_ca_lam:
                 vals['dang_ky_ca_lam_id'] = dk_ca_lam.id
+                # Nếu ca_lam chưa được set, lấy từ dang_ky_ca_lam
+                if not vals.get('ca_lam'):
+                    vals['ca_lam'] = dk_ca_lam.ca_lam
             
             # Tìm đơn từ
             don_tu = self.env['don_tu'].search([
                 ('nhan_vien_id', '=', vals['nhan_vien_id']),
                 ('ngay_ap_dung', '=', vals['ngay_cham_cong']),
-                ('trang_thai_duyet', '=', 'da_duyet'),
-                ('loai_don', 'in', ['di_muon', 've_som', 'nghi']),
-
+                ('trang_thai_duyet', '=', 'da_duyet')
             ], limit=1)
             if don_tu:
                 vals['don_tu_id'] = don_tu.id
@@ -71,13 +83,6 @@ class BangChamCong(models.Model):
         return super(BangChamCong, self).create(vals)
 
     def write(self, vals):
-        """Ngăn sửa khi bảng chấm công bị khóa + cập nhật dang_ky_ca_lam_id và don_tu_id"""
-        # Kiểm tra khóa
-        for record in self:
-            if record.is_locked and vals:
-                raise ValidationError("Bảng chấm công này đã bị khóa, không thể sửa đổi!")
-        
-        # Trước khi lưu, cập nhật dang_ky_ca_lam_id và don_tu_id nếu cần
         for record in self:
             # Lấy giá trị mới hoặc giữ giá trị cũ
             nhan_vien_id = vals.get('nhan_vien_id', record.nhan_vien_id.id)
@@ -89,42 +94,29 @@ class BangChamCong(models.Model):
                     ('nhan_vien_id', '=', nhan_vien_id),
                     ('ngay_lam', '=', ngay_cham_cong)
                 ], limit=1)
-                if dk_ca_lam:
-                    vals['dang_ky_ca_lam_id'] = dk_ca_lam.id
+                vals['dang_ky_ca_lam_id'] = dk_ca_lam.id if dk_ca_lam else False
             
                 # Tìm đơn từ
                 don_tu = self.env['don_tu'].search([
                     ('nhan_vien_id', '=', nhan_vien_id),
                     ('ngay_ap_dung', '=', ngay_cham_cong),
-                    ('trang_thai_duyet', '=', 'da_duyet'),
-                    ('loai_don', 'in', ['di_muon', 've_som', 'nghi']),
-
+                    ('trang_thai_duyet', '=', 'da_duyet')
                 ], limit=1)
-                if don_tu:
-                    vals['don_tu_id'] = don_tu.id
-        
-        # Lưu dữ liệu
-        result = super(BangChamCong, self).write(vals)
-        
-        # Invalidate cache để bắt Odoo tính lại các computed fields
-        self.invalidate_cache()
-        
-        return result
+                vals['don_tu_id'] = don_tu.id if don_tu else False
+            
+        return super(BangChamCong, self).write(vals)
 
     # Thời gian làm việc
-    gio_vao_ca = fields.Datetime("Giờ vào ca", compute='_compute_gio_ca', store=True, readonly=True)
-    gio_ra_ca = fields.Datetime("Giờ ra ca", compute='_compute_gio_ca', store=True, readonly=True)
+    gio_vao_ca = fields.Datetime("Giờ vào ca", compute='_compute_gio_ca', store=True)
+    gio_ra_ca = fields.Datetime("Giờ ra ca", compute='_compute_gio_ca', store=True)
     
-    @api.depends('ca_lam', 'ngay_cham_cong', 'dang_ky_ca_lam_id')
+    @api.depends('ca_lam', 'ngay_cham_cong')
     def _compute_gio_ca(self):
         for record in self:
             if not record.ngay_cham_cong or not record.ca_lam:
                 record.gio_vao_ca = False
                 record.gio_ra_ca = False
                 continue
-
-            user_tz = self.env.user.tz or 'UTC'
-            tz = timezone(user_tz)
 
             if record.ca_lam == "Sáng":
                 gio_vao = time(7, 30)  # 7:30 AM
@@ -140,20 +132,31 @@ class BangChamCong(models.Model):
                 record.gio_ra_ca = False
                 continue
 
-            # Convert to datetime in user's timezone
-            thoi_gian_vao = datetime.combine(record.ngay_cham_cong, gio_vao)
-            thoi_gian_ra = datetime.combine(record.ngay_cham_cong, gio_ra)
+            # Get user timezone or default to Vietnam time (UTC+7)
+            user_tz_name = self.env.user.tz or 'Asia/Ho_Chi_Minh'
+            try:
+                user_tz = timezone(user_tz_name)
+            except:
+                user_tz = timezone('Asia/Ho_Chi_Minh')
             
-            # Store in UTC
-            record.gio_vao_ca = tz.localize(thoi_gian_vao).astimezone(UTC).replace(tzinfo=None)
-            record.gio_ra_ca = tz.localize(thoi_gian_ra).astimezone(UTC).replace(tzinfo=None)
+            # Create local datetime
+            dt_vao_local = datetime.combine(record.ngay_cham_cong, gio_vao)
+            dt_ra_local = datetime.combine(record.ngay_cham_cong, gio_ra)
+            
+            # Localize to user timezone then convert to UTC
+            dt_vao_utc = user_tz.localize(dt_vao_local).astimezone(UTC)
+            dt_ra_utc = user_tz.localize(dt_ra_local).astimezone(UTC)
+            
+            # Store as naive UTC (Odoo will convert back to user tz when displaying)
+            record.gio_vao_ca = dt_vao_utc.replace(tzinfo=None)
+            record.gio_ra_ca = dt_ra_utc.replace(tzinfo=None)
 
     gio_vao = fields.Datetime("Giờ vào thực tế")
     gio_ra = fields.Datetime("Giờ ra thực tế")
 
     # Tính toán đi muộn
-    phut_di_muon_goc = fields.Float("Số phút đi muộn gốc", compute="_compute_phut_di_muon_goc", store=True, readonly=True)
-    phut_di_muon = fields.Float("Số phút đi muộn thực tế", compute="_compute_phut_di_muon", store=True, readonly=True)
+    phut_di_muon_goc = fields.Float("Số phút đi muộn gốc", compute="_compute_phut_di_muon_goc", store=True)
+    phut_di_muon = fields.Float("Số phút đi muộn thực tế", compute="_compute_phut_di_muon", store=True)
     
     @api.depends('gio_vao', 'gio_vao_ca')
     def _compute_phut_di_muon_goc(self):
@@ -175,8 +178,8 @@ class BangChamCong(models.Model):
                     record.phut_di_muon = max(0, record.phut_di_muon_goc - record.thoi_gian_xin)
 
     # Tính toán về sớm
-    phut_ve_som_goc = fields.Float("Số phút về sớm gốc", compute="_compute_phut_ve_som_goc", store=True, readonly=True)
-    phut_ve_som = fields.Float("Số phút về sớm thực tế", compute="_compute_phut_ve_som", store=True, readonly=True)
+    phut_ve_som_goc = fields.Float("Số phút về sớm gốc", compute="_compute_phut_ve_som_goc", store=True)
+    phut_ve_som = fields.Float("Số phút về sớm thực tế", compute="_compute_phut_ve_som", store=True)
     
     @api.depends('gio_ra', 'gio_ra_ca')
     def _compute_phut_ve_som_goc(self):
@@ -206,7 +209,7 @@ class BangChamCong(models.Model):
         ('ve_som', 'Về sớm'),
         ('vang_mat', 'Vắng mặt'),
         ('vang_mat_co_phep', 'Vắng mặt có phép'),
-    ], string="Trạng thái", compute="_compute_trang_thai", store=True, readonly=True)
+    ], string="Trạng thái", compute="_compute_trang_thai", store=True)
     
     @api.depends('phut_di_muon', 'phut_ve_som', 'gio_vao', 'gio_ra')
     def _compute_trang_thai(self):
@@ -234,85 +237,35 @@ class BangChamCong(models.Model):
                 don_tu = self.env['don_tu'].search([
                     ('nhan_vien_id', '=', record.nhan_vien_id.id),
                     ('ngay_ap_dung', '=', record.ngay_cham_cong),
-                    ('trang_thai_duyet', '=', 'da_duyet'),
-                    ('loai_don', 'in', ['di_muon', 've_som', 'nghi']),
-
+                    ('trang_thai_duyet', '=', 'da_duyet')
                 ], limit=1)
                 record.don_tu_id = don_tu.id if don_tu else False
             else:
                 record.don_tu_id = False
 
-    @api.onchange('gio_vao', 'gio_ra', 'don_tu_id')
-    def _onchange_update_trang_thai(self):
-        """Trigger recompute trang_thai khi user thay đổi giờ vào/ra hoặc đơn từ trong form"""
+    def action_fill_gio_dung_gio(self):
+        """Fill giờ vào/ra thực tế với giờ dự kiến (chỉnh sửa để test)"""
         for record in self:
-            # Force Odoo recompute các dependent fields
-            if record.gio_vao or record.gio_ra or record.don_tu_id:
-                # Trực tiếp tính toán lại để form update ngay
-                if record.gio_vao and record.gio_vao_ca:
-                    delta_muon = record.gio_vao - record.gio_vao_ca
-                    phut_di_muon_goc = max(0, delta_muon.total_seconds() / 60)
-                else:
-                    phut_di_muon_goc = 0
-
-                if record.gio_ra and record.gio_ra_ca:
-                    delta_som = record.gio_ra_ca - record.gio_ra
-                    phut_ve_som_goc = max(0, delta_som.total_seconds() / 60)
-                else:
-                    phut_ve_som_goc = 0
-
-                # Áp dụng đơn từ nếu có
-                phut_di_muon = phut_di_muon_goc
-                phut_ve_som = phut_ve_som_goc
-
-                if record.don_tu_id and record.don_tu_id.trang_thai_duyet == 'da_duyet':
-                    if record.loai_don == 'di_muon':
-                        phut_di_muon = max(0, phut_di_muon_goc - record.thoi_gian_xin)
-                    elif record.loai_don == 've_som':
-                        phut_ve_som = max(0, phut_ve_som_goc - record.thoi_gian_xin)
-
-                # Cập nhật trang_thai
-                if not record.gio_vao and not record.gio_ra:
-                    record.trang_thai = 'vang_mat'
-                elif phut_di_muon > 0 and phut_ve_som > 0:
-                    record.trang_thai = 'di_muon_ve_som'
-                elif phut_di_muon > 0:
-                    record.trang_thai = 'di_muon'
-                elif phut_ve_som > 0:
-                    record.trang_thai = 've_som'
-                else:
-                    record.trang_thai = 'di_lam'
-
-    # Thêm trường mới để tính công, OT
-    so_cong = fields.Float(string="Số công", default=0.0, compute="_compute_so_cong", store=True, readonly=True,
-                           help="Tính dựa trên trạng thái: vắng mặt=0, có phép=0.5, đi làm/muộn/sớm=1")
-    ot_gio = fields.Float(string="Giờ OT", default=0.0,
-                          help="Giờ làm thêm ngoài giờ")
+            if record.gio_vao_ca:
+                record.gio_vao = record.gio_vao_ca
+            if record.gio_ra_ca:
+                record.gio_ra = record.gio_ra_ca
     
-    # Khóa bảng chấm công (khi tính công)
-    is_locked = fields.Boolean(string="Khóa", default=False,
-                               help="Khóa để ngăn chặn sửa đổi khi đã tính công")
-    @api.depends('trang_thai', 'don_tu_id')
-    def _compute_so_cong(self):
-        for r in self:
-            if r.trang_thai == 'vang_mat':
-                r.so_cong = 0.0
-            elif r.trang_thai == 'vang_mat_co_phep':
-                r.so_cong = 0.5
-            else:
-                r.so_cong = 1.0
+    def action_fill_gio_di_muon(self):
+        """Fill giờ vào muộn 15 phút để test"""
+        for record in self:
+            if record.gio_vao_ca:
+                gio_vao_muon = record.gio_vao_ca + timedelta(minutes=15)
+                record.gio_vao = gio_vao_muon
+            if record.gio_ra_ca:
+                record.gio_ra = record.gio_ra_ca
     
+    def action_fill_gio_ve_som(self):
+        """Fill giờ ra sớm 15 phút để test"""
+        for record in self:
+            if record.gio_vao_ca:
+                record.gio_vao = record.gio_vao_ca
+            if record.gio_ra_ca:
+                gio_ra_som = record.gio_ra_ca - timedelta(minutes=15)
+                record.gio_ra = gio_ra_som
     
-    @api.model_create_multi
-    def create(self, vals_list):
-        """Ngăn tạo mới khi bảng chấm công bị khóa"""
-        for vals in vals_list:
-            if vals.get('ngay_cham_cong') and vals.get('nhan_vien_id'):
-                existing = self.search([
-                    ('ngay_cham_cong', '=', vals['ngay_cham_cong']),
-                    ('nhan_vien_id', '=', vals['nhan_vien_id']),
-                    ('is_locked', '=', True),
-                ])
-                if existing:
-                    raise ValidationError("Bảng chấm công này đã bị khóa, không thể tạo mới!")
-        return super().create(vals_list)

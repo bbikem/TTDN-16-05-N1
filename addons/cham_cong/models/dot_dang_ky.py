@@ -7,9 +7,9 @@ class DotDangKy(models.Model):
     _description = "Bảng chứa thông tin đợt đăng ký"
     _rec_name = 'ten_dot'
 
-    ma_dot = fields.Char("Mã đợt", required=True)
+    ma_dot = fields.Char("Mã đợt", readonly=True, store=True)
+    ma_dot_preview = fields.Char("Mã đợt", compute="_compute_ma_dot_preview", store=False, readonly=True)
     ten_dot = fields.Char("Tên đợt", compute='_compute_ten_dot', store=True)
-    nam_dang_ky = fields.Char("Năm đăng ký", required=True)
     thang_dang_ky = fields.Selection(
         [(str(i), f'Tháng {i}') for i in range(1, 13)],
         string="Tháng đăng ký",
@@ -17,7 +17,6 @@ class DotDangKy(models.Model):
     )
     ngay_bat_dau = fields.Date("Thời gian bắt đầu", compute='_compute_thoi_gian', store=True)
     ngay_ket_thuc = fields.Date("Thời gian kết thúc", compute='_compute_thoi_gian', store=True)
-    nhan_vien_ids = fields.Many2many('nhan_vien', string="Nhân viên đăng ký")
     han_dang_ky = fields.Date("Hạn đăng ký", required=True)
     trang_thai_dang_ky = fields.Selection(
         [
@@ -41,12 +40,24 @@ class DotDangKy(models.Model):
     )
     dang_ky_ca_lam_theo_ngay_ids = fields.One2many('dang_ky_ca_lam_theo_ngay', inverse_name='dot_dang_ky_id', string="Đăng ký ca làm")
 
-    def _compute_nhan_vien(self):
+    @api.model
+    def create(self, vals):
+        record = super().create(vals)
+        return record
+
+    @api.depends('thang_dang_ky')
+    def _compute_ma_dot_preview(self):
         for record in self:
-            record.nhan_vien_ids = self.env['nhan_vien'].search([
-                ('phong_ban_id', '!=', False),
-                ('chuc_vu_id', '!=', False)
-            ])
+            if not record.thang_dang_ky:
+                record.ma_dot_preview = ''
+            elif record.id and record.ma_dot:
+                # Nếu đã có ID (record lưu rồi), lấy mã từ DB
+                record.ma_dot_preview = record.ma_dot
+            else:
+                # Cho form mới, lấy số tiếp theo từ sequence
+                sequence = self.env['ir.sequence'].search([('code', '=', 'dot_dang_ky.sequence')], limit=1)
+                next_num = sequence.number_next if sequence else 1
+                record.ma_dot_preview = f'DD{next_num:03d}'
             
     @api.depends('han_dang_ky')
     def _compute_trang_thai_dang_ky(self):
@@ -68,12 +79,12 @@ class DotDangKy(models.Model):
             else:
                 record.trang_thai_ap_dung = "Chưa áp dụng"
     
-    @api.depends('thang_dang_ky', 'nam_dang_ky')
+    @api.depends('thang_dang_ky')
     def _compute_thoi_gian(self):
         for record in self:
-            if record.thang_dang_ky and record.nam_dang_ky:
+            if record.thang_dang_ky:
                 thang = int(record.thang_dang_ky)
-                nam = int(record.nam_dang_ky)
+                nam = datetime.now().year
                 ngay_dau_thang = date(nam, thang, 1)
                 ngay_cuoi_thang = date(nam, thang, calendar.monthrange(nam, thang)[1])
                 record.ngay_bat_dau = ngay_dau_thang
@@ -82,10 +93,24 @@ class DotDangKy(models.Model):
                 record.ngay_bat_dau = False
                 record.ngay_ket_thuc = False
     
-    @api.depends('thang_dang_ky', 'nam_dang_ky')
+    @api.depends('thang_dang_ky')
     def _compute_ten_dot(self):
         for record in self:
-            if record.thang_dang_ky and record.nam_dang_ky:
-                record.ten_dot = f"Tháng {record.thang_dang_ky}/{record.nam_dang_ky}"
+            if record.thang_dang_ky:
+                nam = datetime.now().year
+                record.ten_dot = f"Đợt làm việc Tháng {record.thang_dang_ky}/{nam}"
             else:
                 record.ten_dot = False
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        sequence = self.env['ir.sequence'].search([('code', '=', 'dot_dang_ky.sequence')], limit=1)
+        for vals in vals_list:
+            if not vals.get('ma_dot'):
+                # Lấy số tiếp theo và sinh mã
+                next_num = sequence.number_next if sequence else 1
+                vals['ma_dot'] = f'DD{next_num:03d}'
+                # Tăng counter sequence cho record tiếp theo
+                if sequence:
+                    sequence.number_next = next_num + 1
+        return super().create(vals_list)
