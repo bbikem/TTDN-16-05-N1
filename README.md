@@ -357,6 +357,3 @@ Xem thêm: [CONTRIBUTING.md](CONTRIBUTING.md)
 Made with ❤️ by FITDNU
 
 </div>
-=======
-    
->>>>>>> f4b7d4a1d2d793d6a7e4d515ecf3f0427f62e8e0
