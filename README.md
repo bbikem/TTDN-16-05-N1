@@ -57,8 +57,7 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 **Quản lý toàn bộ thông tin nhân viên và cấu trúc tổ chức**
 
 <div align="center">
-    <img src="images/nhansu.jpg" alt="Giao diện danh sách nhân sự" width="48%"/>
-    <img src="images/chucvu.jpg" alt="Giao diện danh sách chức vụ" width="48%"/>
+    <img src="images/nhansu.jpg" alt="Giao diện danh sách nhân sự" width="90%"/>
 </div>
 
 <br/><br/>
