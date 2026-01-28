@@ -4,7 +4,7 @@
     </a>
 </h2>
 <h2 align="center">
-    Hệ Thống Quản Lý Nhân Sự, Chấm Công và Tính Lương<br/>
+    Hệ Thống Quản Lý Nhân Sự kết hợp Chấm Công và Tính Lương<br/>
     <small>HR, Attendance & Payroll Management System with AI Chatbot</small>
 </h2>
 <div align="center">
@@ -38,7 +38,7 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 3. **Tính Lương (Payroll)** - Lương tự động, phụ cấp, khấu trừ, BHXH
 4. **Chatbot Lương (AI)** - Query lương, phụ cấp, sao kê qua chat
 
-## � 2. Các Tính Năng Chi Tiết
+## 🎨 2. Các Tính Năng Chi Tiết
 
 ### 1️⃣ Quản lý Nhân Sự (HR Module) 👥
 **Quản lý toàn bộ thông tin nhân viên và cấu trúc tổ chức**
