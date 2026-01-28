@@ -36,7 +36,7 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 
 </div>
 
-<br/><br/>
+<br/>
 
 ### 🎯 Lợi ích chính:
 - ✅ Tự động hóa 100% quy trình quản lý nhân sự
