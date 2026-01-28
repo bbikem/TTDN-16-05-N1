@@ -27,7 +27,7 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 
 <div align="center">
 
-📸 **Giao diện hệ thống (ví dụ)**
+📸 **Giao diện hệ thống**
 
 <p>
     <img src="images/nhansu.jpg" alt="Màn hình Quản lý nhân sự" width="45%"/>
@@ -35,6 +35,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 </p>
 
 </div>
+
+<br/><br/>
 
 ### 🎯 Lợi ích chính:
 - ✅ Tự động hóa 100% quy trình quản lý nhân sự
@@ -59,6 +61,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
     <img src="images/chucvu.jpg" alt="Giao diện danh sách chức vụ" width="48%"/>
 </div>
 
+<br/><br/>
+
 | Tính năng | Mô tả |
 |-----------|-------|
 | 📋 Hồ sơ nhân viên | Thông tin cá nhân, liên lạc, hộ khẩu, giấy tờ |
@@ -76,6 +80,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
     <img src="images/chamcong.jpg" alt="Giao diện bảng chấm công" width="90%"/>
 </div>
 
+<br/><br/>
+
 | Tính năng | Mô tả |
 |-----------|-------|
 | 🕐 Chấm công thực thời | Check-in/out qua web, mobile, máy chấm công |
@@ -92,6 +98,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 <div align="center">
     <img src="images/tinhluong.jpg" alt="Giao diện bảng lương" width="90%"/>
 </div>
+
+<br/><br/>
 
 | Tính năng | Mô tả |
 |-----------|-------|
@@ -112,12 +120,16 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
     <img src="images/chatbot.jpg" alt="Giao diện Chatbot tính lương" width="70%"/>
 </div>
 
+<br/><br/>
+
 ### 5️⃣ Lịch Cuộc Họp (Calendar) 🗓️
 **Quản lý lịch họp, lịch làm việc của nhân viên và phòng ban**
 
 <div align="center">
     <img src="images/lich.jpg" alt="Giao diện lịch cuộc họp" width="90%"/>
 </div>
+
+<br/><br/>
 
 | Tính năng | Mô tả |
 |-----------|-------|
@@ -364,8 +376,9 @@ Chatbot: "Phụ cấp quản lý: 500 ngàn/tháng
 ## 📄 9. License & Attribution
 
 - **License**: [MIT/GPL/Commercial]
-- **Developed by**: Faculty of Information Technology, DaiNam University
+- **Developed by**: NgocDuyen-MaiHuong-HuyenTrang, Faculty of Information Technology, DaiNam University
 - **Built with**: [Odoo](https://odoo.com), [Groq](https://groq.com)
+- **Reference source**: [TTDN-15-01-N5](https://github.com/dinhtuananh188/TTDN-15-01-N5) - Chấm công
 
 ## 🙏 10. Đóng Góp
 
