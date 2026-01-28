@@ -60,7 +60,7 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
     <img src="images/nhansu.jpg" alt="Giao diện danh sách nhân sự" width="90%"/>
 </div>
 
-<br/><br/>
+<br/>
 
 | Tính năng | Mô tả |
 |-----------|-------|
@@ -79,7 +79,7 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
     <img src="images/chamcong.jpg" alt="Giao diện bảng chấm công" width="90%"/>
 </div>
 
-<br/><br/>
+<br/>
 
 | Tính năng | Mô tả |
 |-----------|-------|
@@ -98,7 +98,7 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
     <img src="images/tinhluong.jpg" alt="Giao diện bảng lương" width="90%"/>
 </div>
 
-<br/><br/>
+<br/>
 
 | Tính năng | Mô tả |
 |-----------|-------|
@@ -119,7 +119,7 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
     <img src="images/chatbot.jpg" alt="Giao diện Chatbot tính lương" width="70%"/>
 </div>
 
-<br/><br/>
+<br/>
 
 ### 5️⃣ Lịch Cuộc Họp (Calendar) 🗓️
 **Quản lý lịch họp, lịch làm việc của nhân viên và phòng ban**
@@ -128,7 +128,7 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
     <img src="images/lich.jpg" alt="Giao diện lịch cuộc họp" width="90%"/>
 </div>
 
-<br/><br/>
+<br/>
 
 | Tính năng | Mô tả |
 |-----------|-------|
