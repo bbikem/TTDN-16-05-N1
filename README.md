@@ -25,6 +25,17 @@
 
 Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot AI** được xây dựng trên nền tảng **Odoo 17**, tối ưu hóa toàn bộ quy trình nhân sự của doanh nghiệp.
 
+<div align="center">
+
+📸 **Giao diện hệ thống (ví dụ)**
+
+<p>
+    <img src="images/nhansu.jpg" alt="Màn hình Quản lý nhân sự" width="45%"/>
+    <img src="images/tinhluong.jpg" alt="Màn hình Tính lương" width="45%"/>
+</p>
+
+</div>
+
 ### 🎯 Lợi ích chính:
 - ✅ Tự động hóa 100% quy trình quản lý nhân sự
 - ✅ Loại bỏ các tệp Excel rời rạc, xử lý thủ công
@@ -43,6 +54,11 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 ### 1️⃣ Quản lý Nhân Sự (HR Module) 👥
 **Quản lý toàn bộ thông tin nhân viên và cấu trúc tổ chức**
 
+<div align="center">
+    <img src="images/nhansu.jpg" alt="Giao diện danh sách nhân sự" width="48%"/>
+    <img src="images/chucvu.jpg" alt="Giao diện danh sách chức vụ" width="48%"/>
+</div>
+
 | Tính năng | Mô tả |
 |-----------|-------|
 | 📋 Hồ sơ nhân viên | Thông tin cá nhân, liên lạc, hộ khẩu, giấy tờ |
@@ -56,6 +72,10 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 ### 2️⃣ Chấm Công & Giờ Làm Việc (Attendance Module) ⏱️
 **Theo dõi thời gian làm việc, đi/về, làm việc từ xa**
 
+<div align="center">
+    <img src="images/chamcong.jpg" alt="Giao diện bảng chấm công" width="90%"/>
+</div>
+
 | Tính năng | Mô tả |
 |-----------|-------|
 | 🕐 Chấm công thực thời | Check-in/out qua web, mobile, máy chấm công |
@@ -68,6 +88,10 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 
 ### 3️⃣ Tính Lương Tự Động (Payroll Module) 💰
 **Tính toán lương, phụ cấp, khấu trừ, BHXH tự động**
+
+<div align="center">
+    <img src="images/tinhluong.jpg" alt="Giao diện bảng lương" width="90%"/>
+</div>
 
 | Tính năng | Mô tả |
 |-----------|-------|
@@ -83,6 +107,17 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 
 ### 4️⃣ Chatbot Tính Lương (AI Assistant) 🤖
 **Hỗ trợ nhân viên query lương, phụ cấp 24/7 qua chat**
+
+<div align="center">
+    <img src="images/chatbot.jpg" alt="Giao diện Chatbot tính lương" width="70%"/>
+</div>
+
+### 5️⃣ Lịch Cuộc Họp (Calendar) 🗓️
+**Quản lý lịch họp, lịch làm việc của nhân viên và phòng ban**
+
+<div align="center">
+    <img src="images/lich.jpg" alt="Giao diện lịch cuộc họp" width="90%"/>
+</div>
 
 | Tính năng | Mô tả |
 |-----------|-------|
