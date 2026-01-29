@@ -25,19 +25,6 @@
 
 Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot AI** được xây dựng trên nền tảng **Odoo 17**, tối ưu hóa toàn bộ quy trình nhân sự của doanh nghiệp.
 
-<div align="center">
-
-📸 **Giao diện hệ thống**
-
-<p>
-    <img src="images/nhansu.jpg" alt="Màn hình Quản lý nhân sự" width="45%"/>
-    <img src="images/tinhluong.jpg" alt="Màn hình Tính lương" width="45%"/>
-</p>
-
-</div>
-
-<br/>
-
 ### 🎯 Lợi ích chính:
 - ✅ Tự động hóa 100% quy trình quản lý nhân sự
 - ✅ Loại bỏ các tệp Excel rời rạc, xử lý thủ công
