@@ -62,6 +62,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 
 <br/>
 
+<div align="center">
+
 | Tính năng | Mô tả |
 |-----------|-------|
 | 📋 Hồ sơ nhân viên | Thông tin cá nhân, liên lạc, hộ khẩu, giấy tờ |
@@ -72,6 +74,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 | 📊 Sơ đồ tổ chức | Biểu đồ cấu trúc công ty, quan hệ cấp bậc |
 | 🔄 Chuyển công tác | Thay đổi phòng ban, chức vụ, lương |
 
+</div>
+
 ### 2️⃣ Chấm Công & Giờ Làm Việc (Attendance Module) ⏱️
 **Theo dõi thời gian làm việc, đi/về, làm việc từ xa**
 
@@ -80,6 +84,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 </div>
 
 <br/>
+
+<div align="center">
 
 | Tính năng | Mô tả |
 |-----------|-------|
@@ -91,6 +97,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 | 🔍 Quản lý ngoài giờ | Tính tăng ca, giờ đêm, điều chỉnh |
 | 📈 Phân tích chấm công | Báo cáo xu hướng, thống kê, heatmap |
 
+</div>
+
 ### 3️⃣ Tính Lương Tự Động (Payroll Module) 💰
 **Tính toán lương, phụ cấp, khấu trừ, BHXH tự động**
 
@@ -99,6 +107,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 </div>
 
 <br/>
+
+<div align="center">
 
 | Tính năng | Mô tả |
 |-----------|-------|
@@ -111,6 +121,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 | ✅ Phê duyệt lương | Quy trình phê duyệt, lịch sử thay đổi |
 | 📈 Báo cáo lương | Báo cáo tháng, quý, năm, so sánh |
 | 🏦 Quản lý BHXH | Khai báo, tính BHXH, BHYT, BHTN |
+
+</div>
 
 ### 4️⃣ Chatbot Tính Lương (AI Assistant) 🤖
 **Hỗ trợ nhân viên query lương, phụ cấp 24/7 qua chat**
@@ -130,6 +142,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 
 <br/>
 
+<div align="center">
+
 | Tính năng | Mô tả |
 |-----------|-------|
 | 💬 Chat interface | Giao diện chat trực quan, dễ sử dụng |
@@ -139,6 +153,8 @@ Hệ thống **Quản lý Nhân Sự, Chấm Công, Tính Lương với Chatbot 
 | 🔐 Bảo mật dữ liệu | Chỉ nhân viên xem dữ liệu của mình |
 | 🌍 Đa ngôn ngữ | Hỗ trợ tiếng Việt, English |
 | ⚡ Phản hồi nhanh | Trả lời ngay lập tức, không cần chờ |
+
+</div>
 
 ## 🛠️ 3. Công Nghệ & Công Cụ
 
